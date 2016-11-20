@@ -3,6 +3,8 @@ load_dotenv(find_dotenv())
 from flask import Flask, render_template, redirect, request, session, flash, jsonify
 import pg, os, bcrypt, uuid
 from time import time
+import datetime
+from datetime import timedelta
 import stripe
 
 
@@ -20,6 +22,7 @@ db = pg.DB(
 def products():
     result = db.query('Select * from product')
     data = result.dictresult()
+
     # print data
     return jsonify(data);
 
@@ -116,15 +119,16 @@ def shopping_cart_checkout():
 @app.route('/api/user/login', methods=["POST"])
 def login():
     req = request.get_json()
-    print req
+    # print req
     username = req['username']
     password = req['password']
     query = db.query('select * from customer where username = $1', username).dictresult()[0]
-    print query
+    # print query
     stored_enc_pword = query['password']
     del query['password']
     print stored_enc_pword
     rehash = bcrypt.hashpw(password.encode('utf-8'), stored_enc_pword)
+    print rehash
 
     if (stored_enc_pword == rehash):
         print "Success"
@@ -135,10 +139,12 @@ def login():
             token = db_token[0]
             print "token exist"
         else:
+            exp_date = datetime.datetime.now() + timedelta(days = 30)
+            print exp_date
             token = uuid.uuid4()
             db.insert('auth_token',{
                 'token' : token,
-                'token_expires' : '2016-12-31',
+                'token_expires' : exp_date,
                 'customer_id' : query['id']
             })
 
