@@ -9,7 +9,7 @@ import stripe
 
 
 tmp_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
-app = Flask('e-commerce', template_folder=tmp_dir)
+app = Flask('e-commerce', static_url_path = '')
 
 db = pg.DB(
    dbname=os.environ.get('PG_DBNAME'),
@@ -17,6 +17,13 @@ db = pg.DB(
    user=os.environ.get('PG_USERNAME'),
    passwd=os.environ.get('PG_PASSWORD')
 )
+
+#Route to main
+@app.route('/')
+def route_index():
+    # print data
+    return app.send_static_file('index.html');
+
 #All products
 @app.route('/api/products')
 def products():
@@ -134,7 +141,7 @@ def login():
         print "Success"
         # do a query to delete expired auth_token??
         current_date = datetime.datetime.now()
-        db.query('delete token from auth_token where $1 <= token_expires ', current_date)
+        # db.query('delete token from auth_token where $1 <= token_expires ', current_date)
         db_token = db.query('select token from auth_token where customer_id = $1',query['id']).dictresult()
         print db_token
 
