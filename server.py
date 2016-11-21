@@ -132,6 +132,9 @@ def login():
 
     if (stored_enc_pword == rehash):
         print "Success"
+        # do a query to delete expired auth_token??
+        current_date = datetime.datetime.now()
+        db.query('delete token from auth_token where $1 <= token_expires ', current_date)
         db_token = db.query('select token from auth_token where customer_id = $1',query['id']).dictresult()
         print db_token
 
@@ -139,12 +142,11 @@ def login():
             token = db_token[0]
             print "token exist"
         else:
-            exp_date = datetime.datetime.now() + timedelta(days = 30)
-            print exp_date
+            # exp_date = datetime.datetime.now() + timedelta(days = 30)
+            # print exp_date
             token = uuid.uuid4()
             db.insert('auth_token',{
                 'token' : token,
-                'token_expires' : exp_date,
                 'customer_id' : query['id']
             })
 
