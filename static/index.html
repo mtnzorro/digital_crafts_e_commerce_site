@@ -12,12 +12,15 @@
 
   </head>
   <body ng-app="e-commerce">
-    <nav>
+    <nav ng-if="logState">
       <ul>
         <li>Welcome {{username_root}}</li>
-        <a><li>Shopping Cart</li></a>
-        <a><li>Logout</li></a>
+        <a ui-sref="shopping_cart"><li>Shopping Cart</li></a>
+        <button type="button" ng-click="logOut()">Logout</button>
       </ul>
+    </nav>
+    <nav ng-if="!logState">
+      <button type="button" ui-sref="login">Login</button>
     </nav>
 
   <a ui-sref="home"><h1>Ugly Sweater Store</h1></a>

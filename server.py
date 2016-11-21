@@ -83,7 +83,7 @@ def shopping_cart_get():
     result = db.query('select id from customer inner join auth_token on auth_token.customer_id = customer.id where auth_token.token = $1',auth).dictresult()
     if(len(result) > 0):
         # print result[0]['id']
-        cart_items = db.query('select product_id from product_in_shopping_cart where customer_id = $1', result[0]['id']).dictresult()
+        cart_items = db.query('select product_id, product.name as prodname, product.price as prodprice from product_in_shopping_cart inner join product on product_in_shopping_cart.product_id = product.id where customer_id = $1', result[0]['id']).dictresult()
         return jsonify(cart_items)
     else:
         return "Access Forbidden", 403
@@ -107,7 +107,8 @@ def shopping_cart_checkout():
         print ("Here sum: $1", sum_of_sale)
         db.insert('purchase',{
         'total_price' : sum_of_sale,
-        'customer_id': customer_id
+        'customer_id': customer_id,
+        'address': req['address']
         })
 
         purchase_query = db.query('select product_id, MAX(purchase.id) from purchase inner join customer on purchase.customer_id = customer.id inner join product_in_shopping_cart on product_in_shopping_cart.customer_id = customer.id where purchase.customer_id = $1 group by product_id', customer_id, ).dictresult()

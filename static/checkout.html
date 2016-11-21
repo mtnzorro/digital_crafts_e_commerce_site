@@ -1,0 +1,12 @@
+
+<h3>Ship To:</h3>
+<form ng-submit="checkout()" method="post">
+  <input type="text" ng-model="address" placeholder="Address" required>
+  <input type="text" ng-model="address2" placeholder="Address Line 2" >
+  <input type="text" ng-model="city" placeholder="City" required>
+  <input type="text" ng-model="state_of_US" placeholder="State" required>
+  <input type="text" ng-model="zip_code" placeholder="Zip Code" ng-required>
+  <button type="submit">Confirm checkout</button>
+</form>
+
+<h3>Your Order:</h3>
