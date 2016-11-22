@@ -8,5 +8,10 @@
   <input type="text" ng-model="zip_code" placeholder="Zip Code" ng-required>
   <button type="submit">Confirm checkout</button>
 </form>
-
+<button type="submit" ng-click="goToCart()">Back to Cart</button>
 <h3>Your Order:</h3>
+<div ng-repeat="product in results">
+  <h2>{{product.prodname}}</h2>
+  <h2>Price: {{product.prodprice}}</h2>
+</div>
+<h1>Total: ${{sum_of_sale}}</h1>

@@ -1,5 +1,13 @@
 <div ng-repeat="product in results">
   <h2>{{product.prodname}}</h2>
   <h2>Price: {{product.prodprice}}</h2>
+  <button ng-click="removeItem(product.product_id)">Remove from cart</button>
 </div>
-<h1>Total: {{sum_of_sale}}</h1>
+<div ng-if="!cart_active">
+  <h3>No items in cart</h3>
+</div>
+
+<div ng-if="cart_active">
+  <h1>Total: ${{sum_of_sale}}</h1>
+  <button class="btn btn-danger" type="submit" ng-click="goToCheckout()">Check out</button>
+</div>

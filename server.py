@@ -6,6 +6,7 @@ from time import time
 import datetime
 from datetime import timedelta
 import stripe
+stripe.api_key = "sk_test_545bfjRSG5ciHpAyW6NACZCj"
 
 
 tmp_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
@@ -75,6 +76,22 @@ def shopping_cart():
     else:
         return "Access Forbidden", 403
 
+#shopping cart POST REMOVE
+@app.route('/api/shopping_cart/remove', methods=["POST"])
+def remove_from_cart():
+    req = request.get_json()
+    auth = req['auth_token']
+    product_id = req['product_id']
+    print product_id
+    result = db.query('select id from customer inner join auth_token on auth_token.customer_id = customer.id where auth_token.token = $1',auth).dictresult()
+
+    if(len(result) > 0):
+        db.query('delete from product_in_shopping_cart where product_id = $1',product_id)
+
+        return jsonify(req);
+    else:
+        return "Access Forbidden", 403
+
 #Shopping Cart GET
 @app.route('/api/shopping_cart', methods=['GET'])
 def shopping_cart_get():
@@ -93,8 +110,8 @@ def shopping_cart_get():
 def shopping_cart_checkout():
     req = request.get_json()
     auth = req['auth_token']
-    result = db.query('select customer.id as cust_id, product_id, price from auth_token inner join customer on auth_token.customer_id = customer.id inner join product_in_shopping_cart on product_in_shopping_cart.customer_id = customer.id inner join product on product_in_shopping_cart.product_id = product.id where auth_token.token = $1',auth).dictresult()
-
+    result = db.query('select customer.id as cust_id, product_id, price from auth_token inner join customer on auth_token.customer_id = customer.id inner join product_in_shopping_cart on product_in_shopping_cart.customer_id = customer.id inner join product on product_in_shopping_cart.product_id = product.id where auth_token.token = $1', auth).dictresult()
+    print result
     if(len(result) > 0):
         result = result
         customer_id = result[0]['cust_id']
@@ -110,6 +127,16 @@ def shopping_cart_checkout():
         'customer_id': customer_id,
         'address': req['address']
         })
+
+        pub_key = req['stripeToken']
+        print pub_key
+        stripe.Charge.create(
+          amount=sum_of_sale * 100,
+          currency="usd",
+          source= pub_key, # obtained with Stripe.js
+          description="Thank you for your biz!!"
+        )
+
 
         purchase_query = db.query('select product_id, MAX(purchase.id) from purchase inner join customer on purchase.customer_id = customer.id inner join product_in_shopping_cart on product_in_shopping_cart.customer_id = customer.id where purchase.customer_id = $1 group by product_id', customer_id, ).dictresult()
         for entry in purchase_query:

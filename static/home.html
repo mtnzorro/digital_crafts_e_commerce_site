@@ -1,19 +1,20 @@
 <!-- <form class="search_bar" ng-submit="search_call()" method="post">
   <input type="search" ng-model="movieName"  placeholder="Search movies">
 </form> -->
+<h1 class="home_title">Sweaters</h1>
 
 <div class="results_wrap">
-  <div class="">
 
-    <span ng-repeat="result in results">
+
+    <span class="img_container" ng-repeat="result in results">
 
       <!-- <a ui-sref="info_view({page_name: {{result.id}}})"> -->
-          <!-- <img class="" ng-if="result.backdrop_path" ng-src="https://image.tmdb.org/t/p/w300/{{result.backdrop_path}}"> -->
-          <a ui-sref="individual_product({product_id: result.id})"><figcaption>{{result.name}}</figcaption></a>
+
+          <a ui-sref="individual_product({product_id: result.id})"><img class="home_page_img" ng-src="images/{{result.image_path}}"><figcaption>{{result.name}}<br>Price: ${{result.price}}</figcaption></a>
       <!-- </a> -->
     </span>
 
     <!-- other anchors here ... -->
 
-  </div>
+
 </div>

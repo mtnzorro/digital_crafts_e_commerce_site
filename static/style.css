@@ -1,0 +1,69 @@
+body {
+  margin: 0;
+  font-family: 'Mountains of Christmas', cursive;
+
+}
+
+.title{
+text-align: center;
+margin-right: 25px;
+margin-bottom: 10px;
+}
+
+.nav_flex{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  align-items: center;
+  background-color: lightgrey;
+}
+
+.menu_div{
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.menu_text{
+  font-size: 18px;
+  /*padding-top: 20px;*/
+}
+
+.home_title{
+  text-align: center;
+  text-decoration: underline;
+  margin-bottom: 70px;
+}
+
+.results_wrap{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.home_page_img{
+  height: 220px;
+  width: 200px;
+   justify-content: center;
+   margin-left: 50px;
+   margin-right: 50px;
+}
+
+figcaption {
+  text-align: center;
+}
+
+.items_conf{
+  margin-right: 50px;
+}
+
+.address_conf {
+  justify-content: right;
+  margin-left: 150px;
+
+}
+.item_added_label {
+  margin-left: 15px;
+  color: green;
+  font-size: 20px;
+}
