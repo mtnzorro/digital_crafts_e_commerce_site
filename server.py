@@ -6,12 +6,12 @@ from time import time
 import datetime
 from datetime import timedelta
 import stripe
-stripe.api_key = "sk_test_545bfjRSG5ciHpAyW6NACZCj"
+
 
 
 tmp_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 app = Flask('e-commerce', static_url_path = '')
-
+stripe.api_key = os.environ.get('STRIPE_KEY')
 db = pg.DB(
    dbname=os.environ.get('PG_DBNAME'),
    host=os.environ.get('PG_HOST'),

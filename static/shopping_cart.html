@@ -9,7 +9,7 @@
     <label class="cart_items">Price: ${{product.prodprice}}</label>
     </span>
     <span class = "cart_span">
-    <button class="btn btn-success" ng-click="removeItem(product.product_id)">Remove from cart</button>
+    <button class="btn btn-danger" ng-click="removeItem(product.product_id)">Remove from cart</button>
     </span>
       </div>
   </div>
@@ -22,6 +22,6 @@
 <div class = "flex_cart_total" ng-if="cart_active">
   <div class="">
   <h4 class="cart_items">Total: ${{sum_of_sale}}</h4>
-  <button class="btn btn-danger" type="submit" ng-click="goToCheckout()">Check out</button>
+  <button class="btn btn-success" type="submit" ng-click="goToCheckout()">Check out</button>
     </div>
 </div>
