@@ -4,6 +4,22 @@ body {
 
 }
 
+/*.the_page {
+  background-image: url('images/diag_wood.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}*/
+
+.santa_img {
+  width: 5em;
+  height: 5em;
+
+}
+.logo_div {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .title{
 text-align: center;
 margin-right: 25px;
@@ -13,9 +29,9 @@ margin-bottom: 10px;
 .nav_flex{
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
   align-items: center;
   background-color: lightgrey;
+  height: 4.4em;
 }
 
 .menu_div{
@@ -34,6 +50,9 @@ margin-bottom: 10px;
   text-align: center;
   text-decoration: underline;
   margin-bottom: 70px;
+  /*color: white;*/
+  margin-top: 0;
+
 }
 
 .results_wrap{
@@ -42,8 +61,8 @@ margin-bottom: 10px;
 }
 
 .home_page_img{
-  height: 220px;
-  width: 200px;
+  height: 350px;
+  width: 300px;
    justify-content: center;
    margin-left: 50px;
    margin-right: 50px;
@@ -56,6 +75,8 @@ margin-bottom: 10px;
 
 figcaption {
   text-align: center;
+  font-size: 2em;
+  /*color: white;*/
 }
 
 .items_conf{

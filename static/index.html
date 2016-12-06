@@ -16,20 +16,25 @@
   </head>
   <body ng-app="e-commerce">
     <nav class="nav_flex" ng-if="logState">
+
         <div class = "menu_div">
         <button class="btn btn-success" ng-click="logOut()">Logout</button>
         <label class="menu_text">Welcome {{user_name}}</label>
         <a class="menu_text" ui-sref="shopping_cart">Shopping Cart ({{cart_counter}})</a>
       </div>
-      <a class="title" ui-sref="home"><h1>Ugly Sweater Store</h1></a>
+      <span class="logo_div">    <a class="title" ui-sref="home"><h1>Ugly Sweater Store</h1></a>
+        <img class="santa_img" src="images/santa_claus.png" alt="santa logo">
+          </span>
+
 
     </nav>
     <nav class="nav_flex" ng-if="!logState">
       <button class= "btn btn-success" type="button" ui-sref="login">Login</button>
-      <a class="title" ui-sref="home"><h1>Ugly Sweater Store</h1></a>
+      <span class="logo_div"><a class="title" ui-sref="home"><h1>Ugly Sweater Store</h1></a>
+        <img class="santa_img" src="images/santa_claus.png" alt="santa logo">
+</span>
 
     </nav>
-
 
 
     <ui-view></ui-view>
