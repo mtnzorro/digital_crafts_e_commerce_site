@@ -5,7 +5,8 @@
   <li>{{result.description}}</li>
   <li>${{result.price}}</li>
   <span>
-  <button type="submit" ng-click = "addToCart(result.id)" name="button">Add to cart</button>
+  <button class="btn btn-success"type="submit" ng-click = "addToCart(result.id)" name="button">Add to cart</button>
+  <button class="btn btn-danger"type="submit" ui-sref = "home" name="button">Back to Sweaters</button>
   <label class="item_added_label" ng-if = "cart_add">Item added to cart</label>
  </span>
 </ul>
