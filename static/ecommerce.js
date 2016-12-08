@@ -13,10 +13,11 @@ app.run(function($rootScope, $cookies, $state) {
 
 app.factory("Commerce_api", function factoryFunction($http, $cookies, $rootScope){
   var service = {};
-  $rootScope.cart_counter = $cookies.get('cart_counter');
+
   $rootScope.user_name = $cookies.get('username');
   $rootScope.token = $cookies.get('token');
   $rootScope.logState = false;
+  $rootScope.cart_counter = $cookies.get('cart_counter');
   if ($rootScope.user_name) {
     $rootScope.logState = true;
   }
@@ -192,6 +193,8 @@ app.controller('ShoppingCartController', function($scope, Commerce_api, $cookies
         $scope.cart_counter += 1;
       }
       $cookies.put('cart_counter', $scope.cart_counter);
+      // $rootScope.cart_counter = $cookies.get('cart_counter');
+      $rootScope.cart_counter = $cookies.get('cart_counter');
       $cookies.put('sum', $scope.sum_of_sale);
       console.log($scope.sum_of_sale);
       console.log("Here", $scope.results);

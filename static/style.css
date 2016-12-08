@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: 'Mountains of Christmas', cursive;
-
+  background-color: #E3E3E3;
 }
 
 /*.the_page {
@@ -41,15 +41,19 @@ margin-bottom: 10px;
 }
 
 .menu_div{
-  width: 30%;
+  width: 50%;
   display: flex;
   justify-content: space-between;
   align-content: center;
 }
 
 .menu_text{
-  font-size: 18px;
+  font-size: 1.5em;
   /*padding-top: 20px;*/
+}
+
+.login_btn{
+  margin-right: 3em;
 }
 
 .home_title{
@@ -80,6 +84,11 @@ margin-bottom: 10px;
   width: 400px;
 }
 
+.ind_page_title{
+  font-size: 2.5em;
+  text-align: center;
+}
+
 figcaption {
   text-align: center;
   font-size: 2em;
@@ -103,6 +112,7 @@ figcaption {
   text-align: center;
   margin-top: 50px;
   margin-bottom: 50px;
+  font-size: 2.5em;
 }
 
 .check_out_flex {
@@ -110,7 +120,7 @@ figcaption {
   flex-direction: column;
 }
 .cart_items {
-  font-size: 17px;
+  font-size: 2em;
 }
 .flex_cart_items{
   display: flex;
