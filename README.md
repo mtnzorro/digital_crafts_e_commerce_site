@@ -14,21 +14,7 @@ Website: (###)
 
 ##Overview:
 
-As an exercise in Object Oriented programming, test driven development, and JQuery, the project challenged us to design a blackjack game with basic functionality:
-
-A button to initiate the game via card images dealt to both the dealer and player
-
-Tracking of card value points with a dynamic display feature
-
-Ability to Hit or Stand as a player during gameplay
-
-Determining a Winner
-
-Restarting the game
-
-Added feautures include:
-
-The ability to place bets and track winnings A dealer card that is face down, along with hidden dealer points Card animations at deal and hit
+The Ugly Sweater Store is a full stack e-commerce mock site, utilizing AngularJS on the front end, and Flask/PostGreSql on the back end.  Our assignment was to build a functional back end, with a set of API's that could provide the functionality that we would need for displaying the current inventory, displaying individual items, shopping cart, checkout, and secure login and account functionality.  Finally we implemented the Stripe payment system, were able to confirm transactions through their demo portal.
 
 ##Technologies:
 
